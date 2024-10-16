@@ -3,7 +3,6 @@ from player import *
 from circleshape import *
 from constants import *
 
-
 def main():
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -19,14 +18,23 @@ def main():
 
     player = Player(x, y)
 
+    updatable = pygame.sprite.Group(player)
+    drawable = pygame.sprite.Group(player)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
         screen.fill((0,0,0))
         dt = clock.tick(60)/1000
-        player.update(dt)
-        player.draw(screen)
+
+        for updatables in updatable:
+            updatables.update(dt)
+
+        for drawables in drawable:
+            drawables.draw(screen)
+
         pygame.display.update()
     
 
