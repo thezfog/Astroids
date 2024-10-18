@@ -30,6 +30,9 @@ def main():
     asteroid_field = AsteroidField()
     updatable.add(asteroid_field)
 
+    shots = pygame.sprite.Group()
+    Shot.containers = (shots, updatable, drawable)
+
 
     while True:
         for event in pygame.event.get():
